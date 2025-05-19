@@ -7,8 +7,9 @@ This is a personal project with the aim of collecting and storing free Maritime 
 ## Set Up
 
 To set up this application on your own device, first cd into the root directory. Then, activate your venv. Next, run:
->docker-compose up -d --build
+>docker-compose up -d --build \
 >prefect deploy
+
 Finally, follow prefect's instructions to direct your tasks to whatever storage configuration you prefer.
 
 ##
