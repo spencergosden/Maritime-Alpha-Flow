@@ -1,0 +1,12 @@
+# Core scheduling/orchestration
+prefect==3.4.0
+
+# Database layer
+SQLAlchemy>=1.4,<3
+psycopg2-binary==2.9.10
+
+# AIS ingestion
+websockets==14.2
+
+# Env var loading
+python-dotenv>=0.21.0

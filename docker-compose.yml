@@ -1,0 +1,56 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    env_file: ./postgres.env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  prefect-server:
+    image: prefecthq/prefect:3-latest
+    env_file:
+      - ./.env
+    environment:
+      - PREFECT_ORION_DATABASE_CONNECTION_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - PREFECT_ORION_BROKER_URL=redis://redis:6379
+      - PREFECT_SERVER_UI_API_URL=${PREFECT_API_URL}
+    command: >
+      prefect server start --host 0.0.0.0 --port 4200
+    ports:
+      - "4200:4200"
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  prefect-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.flows
+    working_dir: /app
+    volumes:
+      - .:/app
+      - .:/home/ubuntu/maritime-app
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - AISSTREAM_API_KEY=${AISSTREAM_API_KEY}
+      - PREFECT_API_URL=http://prefect-server:4200/api
+    command: >
+      sh -c "prefect work-pool create default --type process || true &&
+             prefect worker start --pool default"
+    depends_on:
+      - prefect-server
+    restart: unless-stopped
+
+volumes:
+  pgdata:

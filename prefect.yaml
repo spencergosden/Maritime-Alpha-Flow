@@ -1,0 +1,46 @@
+# Welcome to your prefect.yaml file! You can use this file for storing and managing
+# configuration for deploying your flows. We recommend committing this file to source
+# control along with your flow code.
+
+# Generic metadata about this project
+name: Maritime
+prefect-version: 3.4.0
+
+# build section allows you to manage and build docker images
+build: null
+
+# push section allows you to manage if and how this project is uploaded to remote locations
+push: null
+
+# pull section allows you to provide instructions for cloning this project in remote locations
+pull: null
+
+# the deployments section allows you to provide configuration for deploying flows
+deployments:
+- name: ingest
+  version: null
+  tags: []
+  concurrency_limit: null
+  description: null
+  entrypoint: ingestion/ingestion_flow.py:ingestion_flow
+  parameters: {}
+  work_pool:
+    name: default
+    work_queue_name: null
+    job_variables: {}
+  storage:
+    type: local
+    path: /app
+  schedules:
+  - cron: "*/5 * * * *"
+    timezone: "UTC"
+    day_or: true
+    active: true
+- name: cleanup-old-data
+  entrypoint: cleanup/cleanup_flow.py:cleanup_old_data_flow
+  work_pool:
+    name: default
+  schedules:
+    - cron: "0 0 * * *" 
+      timezone: "UTC"
+      active: true
