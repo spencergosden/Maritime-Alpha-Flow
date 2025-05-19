@@ -1,12 +1,11 @@
-# Core scheduling/orchestration
-prefect==3.4.0
-
-# Database layer
-SQLAlchemy>=1.4,<3
-psycopg2-binary==2.9.10
-
-# AIS ingestion
+numpy==2.2.6
+pandas==2.2.3
+plotly==5.24.1
+prefect==3.4.2
+pydeck==0.8.0
+python-dotenv==1.1.0
+SQLAlchemy==2.0.34
+streamlit==1.37.1
+vectorbt==0.27.3
+websockets==15.0.1
 websockets==14.2
-
-# Env var loading
-python-dotenv>=0.21.0
