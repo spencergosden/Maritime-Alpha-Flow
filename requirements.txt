@@ -1,4 +1,4 @@
-numpy==2.2.6
+numpy
 pandas==2.2.3
 plotly==5.24.1
 prefect==3.4.2
