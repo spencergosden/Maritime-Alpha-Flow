@@ -8,3 +8,4 @@ SQLAlchemy==2.0.34
 streamlit==1.37.1
 vectorbt==0.27.3
 websockets==15.0.1
+psycopg2
