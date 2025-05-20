@@ -72,6 +72,13 @@ def upsert_agg(batch_start: datetime, counts: dict):
 @flow(name="Aggregate Ship Counts")
 def agg_flow(batch_start: datetime, batch_end: datetime):
     logger = get_run_logger()
+    if (
+        batch_start.hour == 3
+        and batch_start.minute == 30
+        and batch_start.second == 0
+    ):
+        logger.info(f"Skipping 03:30 UTC batch at {batch_start!r}")
+        return 
     logger.info(f"Aggregating window {batch_start} -> {batch_end}")
     counts = compute_counts(batch_start, batch_end)
     logger.info(f"Counts: {counts!r}")
