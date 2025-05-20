@@ -43,8 +43,7 @@ type_filters = {
 
 tabs = st.tabs([
     "Overview",  
-    "Backtesting",      
-    "Data Export"
+    "Backtesting"
 ])
 
 
@@ -262,34 +261,3 @@ with tabs[1]:
     )
     st.line_chart(df_count, x="timestamp", y=[f"Count SMA {cnt_fast}", f"Count SMA {cnt_slow}"])
 
-
-
-# Data Export Tab
-
-with tabs[2]:
-    st.header("Download Raw Data")
-    st.write("Export tables as CSV or Parquet:")
-
-    for name, df in [
-        ("ship_position", load_df("SELECT * FROM ship_position")),
-        ("ship_static",   load_df("SELECT * FROM ship_static")),
-        ("ship_count_agg",load_df("SELECT * FROM ship_count_agg")),
-    ]:
-        st.subheader(name)
-        csv_buf = StringIO()
-        df.to_csv(csv_buf, index=False)
-        st.download_button(
-            label=f"Download {name} as CSV",
-            data=csv_buf.getvalue(),
-            file_name=f"{name}.csv",
-            mime="text/csv"
-        )
-
-        pq_buf = BytesIO()
-        df.to_parquet(pq_buf, index=False)
-        st.download_button(
-            label=f"Download {name} as Parquet",
-            data=pq_buf.getvalue(),
-            file_name=f"{name}.parquet",
-            mime="application/octet-stream"
-        )
