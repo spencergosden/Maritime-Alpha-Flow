@@ -16,13 +16,13 @@ Finally, follow prefect's instructions to direct your tasks to whatever storage 
 
 This folder containes a schema.sql file, which is then passed to a file called db.py. This .py file then defines a function to create our data tables given the provided schema when called. It also defines functions to add new data into our tables when called, as well as a function to update an ingestion log with metadata about each batch run. The schema contains four different data tables:
 >
->•ship_static (Containing static data about each vessel, such as ship_type and destination, PK = ship_id)
+>ship_static (Containing static data about each vessel, such as ship_type and destination, PK = ship_id)
 >
->•ship_position (Containing positional data about each vessel at a given time, such as coordinates, PK = ts [timestamp], FK = ship_id)
+>ship_position (Containing positional data about each vessel at a given time, such as coordinates, PK = ts [timestamp], FK = ship_id)
 >
->•ingestion_log (Contains metadata about each ingestion run)
+>ingestion_log (Contains metadata about each ingestion run)
 >
->•ship_count_agg (Counts the aggregate number of vessels in each batch using unique ship_id's, also has vessel counts based on ship_type, PK = batch_start)
+>ship_count_agg (Counts the aggregate number of vessels in each batch using unique ship_id's, also has vessel counts based on ship_type, PK = batch_start)
 
 ## Ingestion
 
@@ -39,12 +39,18 @@ A final prefect flow that clears records from ship_static and ship_position (whi
 ## Dashboard
 
 A streamlit dashboard with the following features:
-•Map of vessel positions from the previous hour
-•A dataframe containing the counts of each destination for unique vessels since a selected date
-•Line chart of historical vessel counts (which can be filtered by vessel type)
-•Gauge to show overall vessel traffic compared to 72-hour SMA
-•Backtesting functionality with adjustable vessel count SMA lengths to create simple vessel count SMA crossover strategies (includes a feature to optimize your backtest, to be used with extreme caution)
-•Links to download .csv and .parquet files for vessel data tables, in case users prefer this to querying the database on SQL for their own data exploration and research
+>
+>Map of vessel positions from the previous hour
+>
+>A dataframe containing the counts of each destination for unique vessels since a selected date
+>
+>Line chart of historical vessel counts (which can be filtered by vessel type)
+>
+>Gauge to show overall vessel traffic compared to 72-hour SMA
+>
+>Backtesting functionality with adjustable vessel count SMA lengths to create simple vessel count SMA crossover strategies (includes a feature to optimize your backtest, to be used with extreme caution)
+>
+>Links to download .csv and .parquet files for vessel data tables, in case users prefer this to querying the database on SQL for their own data exploration and research
 
 
 ## Disclosure
