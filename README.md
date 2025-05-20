@@ -48,7 +48,7 @@ A streamlit dashboard with the following features:
 >
 >Gauge to show overall vessel traffic compared to 72-hour SMA
 >
->Backtesting functionality with adjustable vessel count SMA lengths to create simple vessel count SMA crossover strategies (includes a feature to optimize your backtest, to be used with extreme caution)
+>Backtesting functionality with adjustable vessel count SMA lengths to create simple vessel count SMA crossover strategies (includes a feature to optimize your backtest, to be used with caution)
 
 
 ## Disclosure
