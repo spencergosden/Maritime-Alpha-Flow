@@ -49,4 +49,4 @@ A streamlit dashboard with the following features:
 
 ## Disclosure
 
-This is not financial advice, nor intended to be used in a live trading environment. The purpose of this project is for my own development and entertainment. Past performance of a strategy is not indicative of future performance. 
+This is not financial advice, nor intended to be used in a live trading environment. The sole purpose of this project is for my own development and entertainment. Past performance of a strategy is not indicative of future performance. 
