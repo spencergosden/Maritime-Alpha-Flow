@@ -222,7 +222,7 @@ with tabs[1]:
     if opt:
         with st.spinner("Optimizing..."):
             fast_values = list(range(3, 25, 1))
-            slow_values = list(range(10, min(len(counts), 72), 1))
+            slow_values = list(range(10, min(len(counts), 60), 1))
             results = []
             for f in fast_values:
                 for s in slow_values:
