@@ -226,7 +226,7 @@ with tabs[1]:
             results = []
             for f in fast_values:
                 for s in slow_values:
-                    if f >= s: 
+                    if f >= s/2: 
                         continue
                     sf = counts.rolling(f).mean()
                     ss = counts.rolling(s).mean()
