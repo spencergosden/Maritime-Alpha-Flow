@@ -32,11 +32,11 @@ A prefect flow that streams from aisstream.io for 1 minute, every 5 minutes. Aft
 
 A second prefect flow that runs upon completion of our data ingestion to aggregate vessel counts by vessel type.
 
-##Clean Up
+## Clean Up
 
 A final prefect flow that clears records from ship_static and ship_position (while preserving ship_count_agg) that are more than 6 months old, to ensure data footprint is well maintained. Runs every 24 hours.
 
-##Dashboard
+## Dashboard
 
 A streamlit dashboard with the following features:
 •Map of vessel positions from the previous hour
@@ -47,6 +47,6 @@ A streamlit dashboard with the following features:
 •Links to download .csv and .parquet files for vessel data tables, in case users prefer this to querying the database on SQL for their own data exploration and research
 
 
-##Disclosure
+## Disclosure
 
 This is not financial advice, nor intended to be used in a live trading environment. The purpose of this project is for my own development and entertainment. Past performance of a strategy is not indicative of future performance. 
