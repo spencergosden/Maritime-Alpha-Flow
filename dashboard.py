@@ -232,7 +232,10 @@ with tabs[1]:
                     ss = counts.rolling(s).mean()
                     e = sf > ss
                     x = sf < ss
-                    p = vbt.Portfolio.from_signals(price, e, x, init_cash=100_000, fees=0.001, slippage=0.001, freq=pd.to_timedelta(timeframe).seconds // 60 and f"{int(pd.to_timedelta(timeframe).seconds/60)}T" or timeframe)
+                    if enable_short:
+                        p = vbt.Portfolio.from_signals(price, e, x, init_cash=100_000, fees=0.001, slippage=0.001, short_entries=x, short_exits=e, freq=pd.to_timedelta(timeframe).seconds // 60 and f"{int(pd.to_timedelta(timeframe).seconds/60)}T" or timeframe)
+                    else:
+                        p = vbt.Portfolio.from_signals(price, e, x, init_cash=100_000, fees=0.001, slippage=0.001, freq=pd.to_timedelta(timeframe).seconds // 60 and f"{int(pd.to_timedelta(timeframe).seconds/60)}T" or timeframe)
                     stats = p.stats()
                     results.append({
                         "Fast": f,
