@@ -50,6 +50,9 @@ A streamlit dashboard with the following features:
 >
 >Backtesting functionality with adjustable vessel count SMA lengths to create simple vessel count SMA crossover strategies (includes a feature to optimize your backtest, to be used with caution)
 
+## Demo
+
+[![IMAGE ALT TEXT](https://img.youtu.be/0FVQYHdnvhg/0.jpg)](https://youtu.be/0FVQYHdnvhg "Maritime Alpha Flow Demo")
 
 ## Disclosure
 
