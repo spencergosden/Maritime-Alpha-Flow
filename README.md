@@ -52,7 +52,7 @@ A streamlit dashboard with the following features:
 
 ## Demo
 
-[![IMAGE ALT TEXT]](https://youtu.be/0FVQYHdnvhg "Maritime Alpha Flow Demo")
+[Demo Video Here](https://youtu.be/0FVQYHdnvhg "Maritime Alpha Flow Demo")
 
 ## Disclosure
 
