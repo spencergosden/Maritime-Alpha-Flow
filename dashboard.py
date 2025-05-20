@@ -177,6 +177,7 @@ with tabs[1]:
     cnt_fast = st.number_input("Count SMA fast window", min_value=1, value=6)
     cnt_slow = st.number_input("Count SMA slow window", min_value=1, value=24)
 
+    enable_short = st.checkbox('Enable Shorting')
     run_bt = st.button("Run Backtest", key="run_bt")
     opt   = st.button("Optimize SMA lengths", key="opt_bt")
 
@@ -189,16 +190,28 @@ with tabs[1]:
 
         cnt_entries = sma_cnt_fast > sma_cnt_slow
         cnt_exits   = sma_cnt_fast < sma_cnt_slow
-
-        pf = vbt.Portfolio.from_signals(
-            price,
-            cnt_entries,
-            cnt_exits,
-            init_cash=100_000,
-            fees=0.001,
-            slippage=0.001,
-            freq=pd.to_timedelta(timeframe).seconds // 60 and f"{int(pd.to_timedelta(timeframe).seconds/60)}T" or timeframe
-        )
+        if enable_short:
+            pf = vbt.Portfolio.from_signals(
+                price,
+                cnt_entries,
+                cnt_exits,
+                init_cash=100_000,
+                fees=0.001,
+                slippage=0.001,
+                short_entries=cnt_exits,
+                short_exits=cnt_entries,
+                freq=pd.to_timedelta(timeframe).seconds // 60 and f"{int(pd.to_timedelta(timeframe).seconds/60)}T" or timeframe
+            )
+        else:
+            pf = vbt.Portfolio.from_signals(
+                price,
+                cnt_entries,
+                cnt_exits,
+                init_cash=100_000,
+                fees=0.001,
+                slippage=0.001,
+                freq=pd.to_timedelta(timeframe).seconds // 60 and f"{int(pd.to_timedelta(timeframe).seconds/60)}T" or timeframe
+            )
 
         fig = pf.plot()
         st.subheader("Trade Signals on Price")
